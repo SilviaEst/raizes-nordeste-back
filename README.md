@@ -48,7 +48,7 @@ Como configurar e rodar o projeto localmente
 1. Clonar o repositório
 
 git clone https://github.com/SilviaEst/raizes-nordeste-back
-cd raizes-nordeste-api
+cd raizes-nordeste-back
 
 
 2. Ambiente Virtual (VENV)
@@ -79,3 +79,15 @@ O arquivo collection_postman.json está na raiz do projeto. Importe-o no Postman
 Licença e LGPD
 
 Este projeto implementa o registro explícito de consentimento do usuário, armazenando a prova de aceite dos termos de privacidade diretamente no banco de dados, conforme exigido pela Lei Geral de Proteção de Dados.
+
+Segurança e Autenticação (JWT)
+
+A API utiliza JSON Web Tokens para proteção das rotas de pedidos. Para testar via Swagger:
+
+Acesse http://127.0.0.1:8000/docs
+
+Clique no botão "Authorize" (ícone de cadeado) no topo da página.
+
+No campo de login/senha, você pode inserir qualquer valor (ex: usuário admin e senha admin), pois o sistema utiliza um simulador de autenticação para o MVP.
+
+Após clicar em "Authorize", as rotas de pedidos estarão liberadas para teste.

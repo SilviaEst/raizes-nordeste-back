@@ -32,7 +32,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     except:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token inválido")
 
-app.include_router(pedido_routes.router, prefix="/pedidos")
+app.include_router(pedido_routes.router, prefix="/pedidos", dependencies=[Depends(get_current_user)])
 
 @app.get("/", tags=["Home"])
 def home():
