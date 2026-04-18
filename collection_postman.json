@@ -1,0 +1,34 @@
+{
+	"info": {
+		"name": "Raízes do Nordeste - Testes API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cadastrar Usuário (LGPD)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Silvia Akiba\",\n    \"email\": \"silvia@teste.com\",\n    \"perfil\": \"CLIENTE\",\n    \"consentimento_lgpd\": true\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": { "raw": "http://127.0.0.1:8000/usuarios/", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8000", "path": ["usuarios", ""] }
+			}
+		},
+		{
+			"name": "Criar Pedido (Sucesso)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"canalPedido\": \"TOTEM\",\n    \"usuario_id\": 1,\n    \"unidade_id\": 10,\n    \"itens\": [{ \"produto_id\": 5, \"quantidade\": 2 }],\n    \"formaPagamento\": \"MOCK\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": { "raw": "http://127.0.0.1:8000/pedidos/", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8000", "path": ["pedidos", ""] }
+			}
+		}
+	]
+}
