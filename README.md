@@ -12,8 +12,6 @@ O foco do projeto é garantir a centralização das regras de negócio, controle
 
 
 
-
-
 Arquitetura:
 
 O projeto foi construído utilizando os princípios de Arquitetura em Camadas (Clean Architecture), separando claramente as responsabilidades:
@@ -28,17 +26,17 @@ Infrastructure: Persistência de dados e integrações externas.
 
 
 
-
-
 Tecnologias Utilizadas:
 
 Python 3
 
 FastAPI (Roteamento e Documentação Automática com Swagger)
 
-Pydantic (Validação de Dados)
+Pydantic (Validação de Dados e Schemas)
 
 SQLAlchemy + SQLite (Mapeamento Objeto-Relacional e Persistência)
+
+PyJWT (Segurança e Autenticação)
 
 
 
@@ -71,15 +69,6 @@ uvicorn main:app --reload
 Acesse a documentação interativa (Swagger) em: http://127.0.0.1:8000/docs
 
 
-Testes (Postman)
-
-O arquivo collection_postman.json está na raiz do projeto. Importe-o no Postman para testar o fluxo de criação de pedidos e as validações de erro (como o status 422 para canais de venda inválidos).
-
-
-Licença e LGPD
-
-Este projeto implementa o registro explícito de consentimento do usuário, armazenando a prova de aceite dos termos de privacidade diretamente no banco de dados, conforme exigido pela Lei Geral de Proteção de Dados.
-
 Segurança e Autenticação (JWT)
 
 A API utiliza JSON Web Tokens para proteção das rotas de pedidos. Para testar via Swagger:
@@ -91,3 +80,20 @@ Clique no botão "Authorize" (ícone de cadeado) no topo da página.
 No campo de login/senha, você pode inserir qualquer valor (ex: usuário admin e senha admin), pois o sistema utiliza um simulador de autenticação para o MVP.
 
 Após clicar em "Authorize", as rotas de pedidos estarão liberadas para teste.
+
+
+
+Testes (Postman)
+
+Swagger: http://127.0.0.1:8000/docs
+
+Postman: O arquivo collection_postman.json está na raiz do projeto. Importe-o para testar o fluxo de criação de pedidos.
+
+Nota de Padrão: Todas as requisições devem seguir o padrão snake_case (ex: canal_pedido, usuario_id), conforme as convenções da linguagem Python e as entidades do domínio.
+
+
+
+Licença e LGPD
+
+Este projeto implementa o registro explícito de consentimento do usuário, armazenando a prova de aceite dos termos de privacidade diretamente no banco de dados, conforme exigido pela Lei Geral de Proteção de Dados.
+
