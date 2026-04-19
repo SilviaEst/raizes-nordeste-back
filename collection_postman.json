@@ -11,7 +11,7 @@
       "name": "01 - Auth",
       "item": [
         {
-          "name": "Gerar Token de Acesso",
+          "name": "T01 - Gerar Token de Acesso",
           "request": {
             "method": "POST",
             "header": [],
@@ -55,7 +55,7 @@
       "name": "02 - Pedidos",
       "item": [
         {
-          "name": "Criar Novo Pedido",
+          "name": "T02 - Criar Novo Pedido",
           "request": {
             "auth": {
               "type": "bearer",
@@ -97,7 +97,7 @@
           "response": []
         },
         {
-          "name": "Listar Pedidos Realizados",
+          "name": "T05 - Listar Pedidos Realizados",
           "request": {
             "method": "GET",
             "header": []
@@ -110,7 +110,7 @@
       "name": "03 - Pagamento",
       "item": [
         {
-          "name": "Validar Pagamento (Status PAGO)",
+          "name": "T03 - Validar Pagamento (Status PAGO)",
           "request": {
             "auth": {
               "type": "bearer",
@@ -157,7 +157,7 @@
       "name": "04 - Produtos",
       "item": [
         {
-          "name": "Consultar Cardápio (Produtos)",
+          "name": "T06 - Consultar Cardápio (Produtos)",
           "request": {
             "auth": {
               "type": "noauth"
@@ -187,7 +187,7 @@
       "name": "05 - Estoque",
       "item": [
         {
-          "name": "Consultar Disponibilidade de Estoque",
+          "name": "T07 - Consultar Disponibilidade de Estoque",
           "request": {
             "method": "GET",
             "header": []
@@ -200,7 +200,7 @@
       "name": "06 - Erros",
       "item": [
         {
-          "name": "Erro 422 (Campo canal_pedido ausente)",
+          "name": "T04 - Erro 422 (Campo canal_pedido ausente)",
           "request": {
             "auth": {
               "type": "bearer",
@@ -242,7 +242,7 @@
           "response": []
         },
         {
-          "name": "Erro 401 (Negativo: Acesso sem Token)",
+          "name": "T08 - Erro 401 (Negativo: Acesso sem Token)",
           "request": {
             "method": "GET",
             "header": []
@@ -250,7 +250,7 @@
           "response": []
         },
         {
-          "name": "Erro 404 (Unidade inválida)",
+          "name": "T09 - Erro 404 (Unidade inválida)",
           "request": {
             "method": "GET",
             "header": []
@@ -258,10 +258,44 @@
           "response": []
         },
         {
-          "name": "Erro de Negócio - Pagamento Rejeitado",
+          "name": "T10 - Erro de Negócio - Pagamento Rejeitado",
           "request": {
-            "method": "GET",
-            "header": []
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"canal_pedido\": \"TOTEM\",\r\n  \"valor_total\": 50.0,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/pedidos/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos",
+                ""
+              ]
+            }
           },
           "response": []
         }
