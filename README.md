@@ -40,7 +40,6 @@ PyJWT (Segurança e Autenticação)
 
 
 
-
 Como configurar e rodar o projeto localmente
 
 1. Clonar o repositório
@@ -68,28 +67,41 @@ uvicorn main:app --reload
 
 Acesse a documentação interativa (Swagger) em: http://127.0.0.1:8000/docs
 
+Plano de Testes e Validação (Postman)
 
-Segurança e Autenticação (JWT)
+Para garantir a reprodução dos testes, a coleção collection_postman.json (disponível na raiz do projeto) está organizada em pastas que seguem a ordem lógica de execução.
 
-A API utiliza JSON Web Tokens para proteção das rotas de pedidos. Para testar via Swagger:
+Ordem Sugerida para Execução:
 
-Acesse http://127.0.0.1:8000/docs
+Pasta 01 - Auth (POST /token):
 
-Clique no botão "Authorize" (ícone de cadeado) no topo da página.
+Execute primeiro esta requisição para simular o login.
 
-No campo de login/senha, você pode inserir qualquer valor (ex: usuário admin e senha admin), pois o sistema utiliza um simulador de autenticação para o MVP.
+O sistema retornará um access_token. Copie este código.
 
-Após clicar em "Authorize", as rotas de pedidos estarão liberadas para teste.
+Ambiente: As credenciais padrão são admin / admin.
 
+Configuração do Token:
 
+Nas demais pastas (Pedidos, Pagamento, Erros), o token deve ser inserido na aba Authorization como Bearer Token. Isso simula o ambiente autenticado exigido pelas regras de negócio.
 
-Testes (Postman)
+Pasta 02 - Pedidos (POST /pedidos/):
 
-Swagger: http://127.0.0.1:8000/docs
+Teste de criação de pedido com sucesso. Valida a persistência no banco raizes_nordeste.db.
 
-Postman: O arquivo collection_postman.json está na raiz do projeto. Importe-o para testar o fluxo de criação de pedidos.
+Padrão: Utilize o JSON com campos em snake_case (ex: canal_pedido).
 
-Nota de Padrão: Todas as requisições devem seguir o padrão snake_case (ex: canal_pedido, usuario_id), conforme as convenções da linguagem Python e as entidades do domínio.
+Pasta 03 - Pagamento:
+
+Valida a integração com o simulador (Mock).
+
+Verifica se o status do pedido é atualizado automaticamente para "PAGO" após a confirmação financeira.
+
+Pasta 04 - Erros (Validação 422):
+
+Execução de cenários de exceção.
+
+Testa a robustez da API ao enviar dados incompletos (ex: omitindo o campo obrigatório canal_pedido), retornando o código 422 Unprocessable Entity.
 
 
 
