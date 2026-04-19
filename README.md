@@ -69,40 +69,22 @@ Acesse a documentação interativa (Swagger) em: http://127.0.0.1:8000/docs
 
 Plano de Testes e Validação (Postman)
 
-Para garantir a reprodução dos testes, a coleção collection_postman.json (disponível na raiz do projeto) está organizada em pastas que seguem a ordem lógica de execução.
+Para cumprir as exigências do roteiro, a coleção collection_postman.json contém 10 cenários de teste organizados por recursos.
 
-Ordem Sugerida para Execução:
 
-Pasta 01 - Auth (POST /token):
+- Ordem de Execução Recomendada:
 
-Execute primeiro esta requisição para simular o login.
+01 - Auth: Execute o T01 - Gerar Token (Credenciais: admin/admin). Copie o token gerado.
 
-O sistema retornará um access_token. Copie este código.
+- Configuração: Nas demais pastas, insira o token na aba Authorization como Bearer Token.
 
-Ambiente: As credenciais padrão são admin / admin.
+- Execução dos Fluxos:
 
-Configuração do Token:
-
-Nas demais pastas (Pedidos, Pagamento, Erros), o token deve ser inserido na aba Authorization como Bearer Token. Isso simula o ambiente autenticado exigido pelas regras de negócio.
-
-Pasta 02 - Pedidos (POST /pedidos/):
-
-Teste de criação de pedido com sucesso. Valida a persistência no banco raizes_nordeste.db.
-
-Padrão: Utilize o JSON com campos em snake_case (ex: canal_pedido).
-
-Pasta 03 - Pagamento:
-
-Valida a integração com o simulador (Mock).
-
-Verifica se o status do pedido é atualizado automaticamente para "PAGO" após a confirmação financeira.
-
-Pasta 04 - Erros (Validação 422):
-
-Execução de cenários de exceção.
-
-Testa a robustez da API ao enviar dados incompletos (ex: omitindo o campo obrigatório canal_pedido), retornando o código 422 Unprocessable Entity.
-
+02 - Pedidos: Criação (Status 201) e Listagem de pedidos. (T02 e T05)
+03 - Pagamento: Validação do fluxo de confirmação via mock. (T03)
+04 - Produtos: Consulta ao cardápio completo. (T06)
+05 - Estoque: Consulta de saldo por unidade física. (T07)
+06 - Erros: Cenários negativos (422 - Falta de dados, 401 - Sem Token, 404 - Unidade Inválida e Pagamento Rejeitado ). (T04, T08, T09 e T10)
 
 
 Licença e LGPD
