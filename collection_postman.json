@@ -1,34 +1,201 @@
 {
-	"info": {
-		"name": "Raízes do Nordeste - Testes API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Cadastrar Usuário (LGPD)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Silvia Akiba\",\n    \"email\": \"silvia@teste.com\",\n    \"perfil\": \"CLIENTE\",\n    \"consentimento_lgpd\": true\n}",
-					"options": { "raw": { "language": "json" } }
-				},
-				"url": { "raw": "http://127.0.0.1:8000/usuarios/", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8000", "path": ["usuarios", ""] }
-			}
-		},
-		{
-			"name": "Criar Pedido (Sucesso)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"canalPedido\": \"TOTEM\",\n    \"usuario_id\": 1,\n    \"unidade_id\": 10,\n    \"itens\": [{ \"produto_id\": 5, \"quantidade\": 2 }],\n    \"formaPagamento\": \"MOCK\"\n}",
-					"options": { "raw": { "language": "json" } }
-				},
-				"url": { "raw": "http://127.0.0.1:8000/pedidos/", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8000", "path": ["pedidos", ""] }
-			}
-		}
-	]
+  "info": {
+    "_postman_id": "8556b24f-b5a1-47a1-9dc5-7bbd7c58e2a4",
+    "name": "Raízes do Nordeste API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47855922",
+    "_collection_link": "https://go.postman.co/collection/47855922-8556b24f-b5a1-47a1-9dc5-7bbd7c58e2a4?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "New Folder",
+      "item": [
+        {
+          "name": "01 - Auth",
+          "item": [
+            {
+              "name": "Gerar Token de Acesso",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "username",
+                      "value": "admin",
+                      "type": "text",
+                      "uuid": "b7a6bf31-7eae-46ee-ad7e-49b78f0e3459"
+                    },
+                    {
+                      "key": "password",
+                      "value": "admin",
+                      "type": "text",
+                      "uuid": "55b52a25-bf35-4655-9e16-f15e31c0ef02"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/token",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "token"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "02 - Pedidos",
+          "item": [
+            {
+              "name": "Criar Novo Pedido",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"canal_pedido\": \"TOTEM\",\r\n  \"valor_total\": 50.0,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/pedidos/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "pedidos",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "03 - Pagamento",
+          "item": [
+            {
+              "name": "Validar Pagamento (Status PAGO)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"canal_pedido\": \"TOTEM\",\r\n  \"valor_total\": 50.0,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/pedidos/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "pedidos",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "04 - Erros",
+          "item": [
+            {
+              "name": "Erro 422 (Campo canal_pedido ausente)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"valor_total\": 50.0,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/pedidos/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "pedidos",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
