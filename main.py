@@ -19,7 +19,7 @@ app = FastAPI(
 
 @app.post("/token", tags=["Segurança"])
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    # Simulação: Se o usuário existir, gera o token. 
+    
     return {
         "access_token": jwt.encode({"sub": form_data.username, "perfil": "ADMIN"}, SECRET_KEY, algorithm=ALGORITHM),
         "token_type": "bearer"
@@ -37,3 +37,25 @@ app.include_router(pedido_routes.router, prefix="/pedidos", dependencies=[Depend
 @app.get("/", tags=["Home"])
 def home():
     return {"mensagem": "API Raízes do Nordeste ativa, operante e protegida!"}
+
+
+@app.get("/produtos", tags=["Produtos"])
+def listar_produtos():
+    return [
+        {"id": 1, "nome": "Cuscuz com Manteiga", "preco_base": 15.0, "categoria": "Cuscuz"},
+        {"id": 2, "nome": "Tapioca de Carne Seca", "preco_base": 22.0, "categoria": "Tapioca"}
+    ]
+
+
+@app.get("/estoque/{unidade_id}", tags=["Estoque"])
+def consultar_estoque(unidade_id: int):
+   
+    if unidade_id == 10:
+        return {
+            "unidade_id": 10,
+            "itens": [
+                {"produto_id": 1, "quantidade": 50},
+                {"produto_id": 2, "quantidade": 30}
+            ]
+        }
+    raise HTTPException(status_code=404, detail="Unidade não encontrada") 

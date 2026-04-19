@@ -13,3 +13,10 @@ def criar_novo_pedido(pedido: Pedido):
     """
     resultado = service.criar_e_processar_pedido(pedido)
     return resultado
+
+@router.get("/", response_model=list, tags=["Pedidos"])
+def listar_todos_os_pedidos():
+    """
+    Endpoint para listar o histórico de pedidos.
+    """
+    return service.listar_pedidos() # Chamada para o serviço

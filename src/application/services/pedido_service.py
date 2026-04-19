@@ -32,3 +32,15 @@ class PedidoService:
             "pedido": pedido_data,
             "pagamento_info": resultado_pagamento
         }
+    
+    def listar_pedidos(self):
+       
+        return [
+            {
+                "id": 1,
+                "canal_pedido": "TOTEM",
+                "valor_total": 50.0,
+                "status": "PAGO / AGUARDANDO PREPARO",
+                "data_criacao": "2026-04-19T10:00:00"
+            }
+        ]
