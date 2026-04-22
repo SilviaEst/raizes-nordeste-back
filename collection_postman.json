@@ -16,19 +16,19 @@
             "method": "POST",
             "header": [],
             "body": {
-              "mode": "formdata",
-              "formdata": [
+              "mode": "urlencoded",
+              "urlencoded": [
                 {
                   "key": "username",
                   "value": "admin",
                   "type": "text",
-                  "uuid": "33a71234-14ce-4248-90e6-d29be0574798"
+                  "uuid": "b7a6bf31-7eae-46ee-ad7e-49b78f0e3459"
                 },
                 {
                   "key": "password",
                   "value": "admin",
                   "type": "text",
-                  "uuid": "841626b4-70a7-456b-b771-0c2da0093711"
+                  "uuid": "55b52a25-bf35-4655-9e16-f15e31c0ef02"
                 }
               ]
             },
@@ -57,24 +57,129 @@
         {
           "name": "T02 - Criar Novo Pedido",
           "request": {
-            "method": "GET",
-            "header": []
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"canal_pedido\": \"TOTEM\",\r\n  \"valor_total\": 50.0,\r\n  \"forma_pagamento\": \"MOCK\",\r\n  \"consentimento_lgpd\": true,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/pedidos/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos",
+                ""
+              ]
+            }
           },
           "response": []
         },
         {
           "name": "T03 - Listagem de Pedidos",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
-            "header": []
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/pedidos/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos",
+                ""
+              ]
+            }
           },
           "response": []
         },
         {
           "name": "T04 - Registro de Consentimento LGPD",
           "request": {
-            "method": "GET",
-            "header": []
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"canal_pedido\": \"TOTEM\",\r\n  \"valor_total\": 50.0,\r\n  \"forma_pagamento\": \"MOCK\",\r\n  \"consentimento_lgpd\": true,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/pedidos/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos",
+                ""
+              ]
+            }
           },
           "response": []
         }
@@ -86,16 +191,84 @@
         {
           "name": "T05 - Registro de Pagamento Aprovado",
           "request": {
-            "method": "GET",
-            "header": []
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"canal_pedido\": \"TOTEM\",\r\n  \"valor_total\": 50.0,\r\n  \"forma_pagamento\": \"MOCK\",\r\n  \"consentimento_lgpd\": true,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/pedidos/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos",
+                ""
+              ]
+            }
           },
           "response": []
         },
         {
           "name": "T06 - Atualização de Status",
           "request": {
-            "method": "GET",
-            "header": []
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInBlcmZpbCI6IkFETUlOIn0.vF2PlMySE0YDy8YfnHIozPfQaGutiNylDCbWJZwR6xc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"usuario_id\": 1,\r\n  \"unidade_id\": 10,\r\n  \"canal_pedido\": \"TOTEM\",\r\n  \"valor_total\": 50.0,\r\n  \"forma_pagamento\": \"MOCK\",\r\n  \"consentimento_lgpd\": true,\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.0\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/pedidos/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos",
+                ""
+              ]
+            }
           },
           "response": []
         }
@@ -107,8 +280,26 @@
         {
           "name": "T07 - Acesso sem Token (Erro 401)",
           "request": {
+            "auth": {
+              "type": "noauth"
+            },
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/pedidos/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos",
+                ""
+              ]
+            }
           },
           "response": []
         },
