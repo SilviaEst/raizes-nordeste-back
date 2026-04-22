@@ -8,7 +8,7 @@ Esse repositório contém o código-fonte da API desenvolvida para o Projeto Mul
 Sobre o projeto:
 
 O sistema é o motor de backend de uma rede de lanchonetes nordestinas (Raízes do Nordeste), projetado para gerenciar pedidos de forma multicanal (Aplicativo, Totem e Balcão).
-O foco do projeto é a persistência robusta de dados, controle de estoque por unidade e integração com fluxos de pagamento, garantindo a integridade das regras de negócio em cada transação.
+O foco deste ciclo é a autenticação segura, a persistência de pedidos com registro de consentimento LGPD e a simulação de fluxos de pagamento (Mock), garantindo a integridade das regras de negócio em cada transação.
 
 
 
@@ -22,13 +22,13 @@ Application: Orquestração de serviços e regras de fluxo.
 
 Domain: Entidades centrais do negócio (Pedidos, Usuários, Produtos).
 
-Infrastructure: Persistência de dados e integrações externas.
+Infrastructure: Persistência em banco de dados SQLite e segurança JWT.
 
 
 
 Tecnologias Utilizadas:
 
-Python 3
+Python 3.10+
 
 FastAPI (Roteamento e Documentação Automática com Swagger)
 
@@ -71,27 +71,34 @@ Acesse a documentação interativa (Swagger) em: http://127.0.0.1:8000/docs
 
 Plano de Testes e Validação (Postman)
 
-Para cumprir as exigências do roteiro, a coleção collection_postman.json contém 10 cenários de teste organizados por recursos.
+
+Para cumprir as exigências do roteiro, a coleção collection_postman.json contém 10 cenários de teste organizados para validar a resiliência do sistema (6 Fluxos Positivos e 4 Negativos).
 
 
-- Ordem de Execução Recomendada:
+Fluxos Positivos (Sucesso)
 
-01 - Auth: Execute o T01 - Gerar Token (Credenciais: admin/admin). Copie o token gerado.
+T01 - Login com sucesso: Geração de token JWT (admin/admin).
 
-- Configuração: Nas demais pastas, insira o token na aba Authorization como Bearer Token.
+T02 - Criar Pedido: Persistência de novo pedido no banco de dados.
 
-- Execução dos Fluxos:
+T03 - Listagem de Pedidos: Recuperação de histórico de pedidos.
 
-02 - Pedidos: Criação (Status 201) e Listagem de pedidos. (T02 e T05)
+T04 - Consentimento LGPD: Registro explícito do aceite de termos de privacidade.
 
-03 - Pagamento: Validação do fluxo de confirmação via mock. (T03)
+T05 - Pagamento Aprovado: Validação de transação via Mock (Status: APROVADO).
 
-04 - Produtos: Consulta ao cardápio completo. (T06)
+T06 - Atualização de Status: Atualização automática de status pós-pagamento.
 
-05 - Estoque: Consulta de saldo por unidade física. (T07)
 
-06 - Erros: Cenários negativos (422 - Falta de dados, 401 - Sem Token, 404 - Unidade Inválida e Pagamento Rejeitado ). (T04, T08, T09 e T10)
+Fluxos Negativos (Tratamento de Erros)
 
+T07 - Acesso sem Token (401): Bloqueio de acesso sem token válido.
+
+T08 - Campo Obrigatório Ausente (422): Erro ao enviar JSON com campos obrigatórios ausentes.
+
+T09 - Formato de Dado Inválido (422): Erro ao enviar formatos de dados inválidos (ex: texto em campo numérico).
+
+T10 - Pedido Inexistente (404): Busca por recurso (ID de pedido) inexistente no sistema.
 
 Licença e LGPD
 
