@@ -83,9 +83,13 @@ Para cumprir as exigências do roteiro, a coleção collection_postman.json cont
 - Execução dos Fluxos:
 
 02 - Pedidos: Criação (Status 201) e Listagem de pedidos. (T02 e T05)
+
 03 - Pagamento: Validação do fluxo de confirmação via mock. (T03)
+
 04 - Produtos: Consulta ao cardápio completo. (T06)
+
 05 - Estoque: Consulta de saldo por unidade física. (T07)
+
 06 - Erros: Cenários negativos (422 - Falta de dados, 401 - Sem Token, 404 - Unidade Inválida e Pagamento Rejeitado ). (T04, T08, T09 e T10)
 
 
