@@ -17,13 +17,20 @@ class ItemPedido(BaseModel):
 
 class Pedido(BaseModel):
     id: Optional[int] = None
-    usuario_id: int  # Quem pediu
-    unidade_id: int  # Onde pediu (estoque local)
-    canal_pedido: CanalPedido # Exigência RF04
+    usuario_id: int
+    unidade_id: int
+    canal_pedido: CanalPedido
     status: str = "RECEBIDO"
     valor_total: float
     data_criacao: datetime = datetime.now()
-    itens: List[ItemPedido]
+    itens: Optional[List[ItemPedido]] = [] 
+
+    class Config:
+        from_attributes = True
+
+class RespostaPedidoCriado(BaseModel):
+    pedido: Pedido
+    pagamento_info: dict
 
     class Config:
         from_attributes = True

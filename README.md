@@ -7,8 +7,8 @@ Esse repositório contém o código-fonte da API desenvolvida para o Projeto Mul
 
 Sobre o projeto:
 
-O sistema simula o backend de uma rede de lanchonetes nordestinas (Raízes do Nordeste), projetado para gerenciar pedidos de forma multicanal (Aplicativo, Totem e Balcão).
-O foco do projeto é garantir a centralização das regras de negócio, controle de estoque por unidade e integração com simuladores de pagamento.
+O sistema é o motor de backend de uma rede de lanchonetes nordestinas (Raízes do Nordeste), projetado para gerenciar pedidos de forma multicanal (Aplicativo, Totem e Balcão).
+O foco do projeto é a persistência robusta de dados, controle de estoque por unidade e integração com fluxos de pagamento, garantindo a integridade das regras de negócio em cada transação.
 
 
 
@@ -66,6 +66,8 @@ uvicorn main:app --reload
 
 
 Acesse a documentação interativa (Swagger) em: http://127.0.0.1:8000/docs
+
+
 
 Plano de Testes e Validação (Postman)
 
