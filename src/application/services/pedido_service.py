@@ -1,3 +1,4 @@
+from fastapi import HTTPException 
 from sqlalchemy.orm import Session
 from src.domain.entities.pedido import Pedido
 from src.infrastructure.external_services.pagamento_mock import PagamentoMock
@@ -39,3 +40,17 @@ class PedidoService:
     
     def listar_pedidos(self, db: Session):
         return db.query(PedidoModel).all()
+
+    def atualizar_status(self, pedido_id: int, novo_status: str, db: Session):
+      
+        pedido = db.query(PedidoModel).filter(PedidoModel.id == pedido_id).first()
+
+        if not pedido:
+            raise HTTPException(status_code=404, detail="Pedido não encontrado")
+
+        
+        pedido.status = novo_status.upper()
+        db.commit()
+        db.refresh(pedido)
+        
+        return pedido
