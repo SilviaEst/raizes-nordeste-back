@@ -98,7 +98,7 @@ T08 - Campo Obrigatório Ausente (422): Erro ao enviar JSON com campos obrigató
 
 T09 - Formato de Dado Inválido (422): Erro ao enviar formatos de dados inválidos (ex: texto em campo numérico).
 
-T10 - Pedido Inexistente (404): Busca por recurso (ID de pedido) inexistente no sistema.
+T10 - Unidade Inexistente (404): Busca por recurso (ID de unidade) inexistente no sistema.
 
 Licença e LGPD
 
