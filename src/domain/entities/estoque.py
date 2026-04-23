@@ -2,10 +2,10 @@ from pydantic import BaseModel
 from typing import Optional
 
 class Estoque(BaseModel):
-    id: Optional[int] = None      # O ID pode ser nulo se o banco ainda não o gerou
-    unidade_id: int               # Referência à loja (FK)
-    produto_id: int               # Referência ao cuscuz/tapioca (FK)
-    quantidade: int               # Quantidade física disponível
+    id: Optional[int] = None      
+    unidade_id: int               
+    produto_id: int               
+    quantidade: int              
 
     class Config:
-        from_attributes = True    # Permite que o Pydantic leia dados do banco (ORM)
+        from_attributes = True    
